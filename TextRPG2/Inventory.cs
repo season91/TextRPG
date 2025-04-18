@@ -111,14 +111,14 @@ namespace TextRPG2
         {
             int power = int.Parse(inventoryItems[idx]["power"]);
 
-            var equipAttackItemIndex = (from x in inventoryItems.Select((item, index) => new { item, index })
+            var equipAttackItem = (from x in inventoryItems.Select((item, index) => new { item, index })
                                         where x.item["equip"] == "check" && x.item["type"] == "AttackPower"
-                                        select x.index).FirstOrDefault();
-            if (equipAttackItemIndex > 0)
+                                        select (x.index, x.item)).FirstOrDefault();
+            if (equipAttackItem.item != null)
             {
                 // 기존 장착 해제
-                inventoryItems[equipAttackItemIndex]["equip"] = "";
-                player.AttackBonus -= int.Parse(inventoryItems[equipAttackItemIndex]["power"]);
+                inventoryItems[equipAttackItem.index]["equip"] = "";
+                player.AttackBonus -= int.Parse(inventoryItems[equipAttackItem.index]["power"]);
 
                 Console.WriteLine("기존 무기 장착 해제했습니다!");
             }
@@ -135,14 +135,14 @@ namespace TextRPG2
         {
             int power = int.Parse(inventoryItems[idx]["power"]);
 
-            var equipDefenseItemIndex = (from x in inventoryItems.Select((item, index) => new { item, index })
+            var equipDefenseItem = (from x in inventoryItems.Select((item, index) => new { item, index })
                                         where x.item["equip"] == "check" && x.item["type"] == "DefensePower"
-                                        select x.index).FirstOrDefault();
-            if (equipDefenseItemIndex > 0)
+                                        select (x.index, x.item)).FirstOrDefault();
+            if (equipDefenseItem.item != null)
             {
                 // 기존 장착 해제
-                inventoryItems[equipDefenseItemIndex]["equip"] = "";
-                player.DefenseBonus -= int.Parse(inventoryItems[equipDefenseItemIndex]["power"]);
+                inventoryItems[equipDefenseItem.index]["equip"] = "";
+                player.DefenseBonus -= int.Parse(inventoryItems[equipDefenseItem.index]["power"]);
 
                 Console.WriteLine("기존 방어구 장착 해제했습니다!");
             }
