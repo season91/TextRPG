@@ -6,15 +6,6 @@ namespace TextRPG2
 {
     internal class GameManager
     {
-        public static GameManager Instance;
-
-        public GameManager() {
-            if (Instance == null)
-            {   
-                Instance = new GameManager();
-            }
-        }
-
         static void Main(string[] args)
         {
             bool isFinished = false;
@@ -22,6 +13,7 @@ namespace TextRPG2
             {
                 Player player;
                 Inventory inventory;
+                Item item;
 
                 // JSON 저장데이터 있다면 로딩
                 if (File.Exists("backupData.json"))
@@ -34,6 +26,7 @@ namespace TextRPG2
                     if (string.IsNullOrWhiteSpace(loadJson))
                     {
                         player = new Player();
+                        item = new Item("init");
                         inventory = new Inventory();
                     }
                     else
@@ -41,11 +34,13 @@ namespace TextRPG2
                         var loadData = JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(loadJson);
                         // 역직렬화
                         player = loadData["Player"].Deserialize<Player>();
+                        item = loadData["item"].Deserialize<Item>();
                         inventory = loadData["Inventory"].Deserialize<Inventory>();
                     }
                 } else
                 {
                     player = new Player();
+                    item = new Item("init");
                     inventory = new Inventory();
                 }
 
@@ -93,7 +88,7 @@ namespace TextRPG2
                 }
 
                 // GameStart
-                Item item = new Item("init");
+                
                 
                 Shop shop = new Shop();
                 Dunjeon dunjeon = new Dunjeon();
@@ -125,7 +120,8 @@ namespace TextRPG2
                                 var backupData = new Dictionary<string, object>()
                                 {
                                     {nameof(Player), player },
-                                    {nameof(Inventory), inventory}
+                                    {nameof(Inventory), inventory},
+                                    {nameof(Item), item}
                                 };
 
                                 var options = new JsonSerializerOptions { WriteIndented = true };
