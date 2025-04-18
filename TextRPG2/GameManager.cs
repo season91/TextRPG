@@ -34,7 +34,7 @@ namespace TextRPG2
                         var loadData = JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(loadJson);
                         // 역직렬화
                         player = loadData["Player"].Deserialize<Player>();
-                        item = loadData["item"].Deserialize<Item>();
+                        item = loadData["Item"].Deserialize<Item>();
                         inventory = loadData["Inventory"].Deserialize<Inventory>();
                     }
                 } else

@@ -1,18 +1,19 @@
 ﻿using System.Collections.Generic;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace TextRPG2
 {
     public class Item
     {
-        public List<Dictionary<string, string>> items;
+        public List<Dictionary<string, string>> Items { get; set; }
         public int itemCount = 6; // 하드코딩
 
         public Item() { 
-            this.items = new List<Dictionary<string, string>>();
+            this.Items = new List<Dictionary<string, string>>();
         }
         public Item(string init)
         {
-            this.items = new List<Dictionary<string, string>>();
+            this.Items = new List<Dictionary<string, string>>();
             string itemNo = "";
             string name = "";
             string type = "";
@@ -84,8 +85,23 @@ namespace TextRPG2
                 itemInfo.Add("gold", gold);
                 itemInfo.Add("equip", equip);
 
-                this.items.Add(itemInfo);
+                this.Items.Add(itemInfo);
             }
         }
+
+        // Item과 Inventory 보유 중인지 비교
+        public bool IsSameItem(Dictionary<string, string> item, Inventory inventory)
+        {
+            bool result = false;
+            foreach (var inven in inventory.InventoryItems)
+            {
+                if (item["itemNo"] == inven["itemNo"])
+                {
+                    result = true;
+                }
+            }
+            return result;
+        }
+        
     }
 }
