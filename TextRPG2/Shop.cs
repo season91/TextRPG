@@ -5,7 +5,7 @@
         public void ShopMenu(Player player, Item item, Inventory inventory)
         {
             bool isFinished = false;
-            List<Dictionary<string, string>> printItems = item.items;
+            List<Dictionary<string, string>> printItems = item.Items;
 
             while (!isFinished)
             {
@@ -27,7 +27,7 @@
                     Console.Write($" {printItems[i]["name"]} " +
                         $"| {(printItems[i]["type"] == "DefensePower" ? "방어력" : "공격력")} + {printItems[i]["power"]} " +
                         $"| {printItems[i]["descript"]} " +
-                        $"| {(inventory.InventoryItems.Contains(printItems[i]) ? "구매완료" : printItems[i]["gold"] + "G")}");
+                        $"| {(item.IsSameItem(printItems[i], inventory) ? "구매완료" : printItems[i]["gold"] + "G")}");
                     Console.WriteLine();
                 }
 
@@ -64,7 +64,7 @@
         // 아이템 구매 메뉴로 이동
         public void ShopBuyItem(Player player, Item item, Inventory inventory)
         {
-            List<Dictionary<string, string>> printItems = item.items;
+            List<Dictionary<string, string>> printItems = item.Items;
             bool isFinished = false;
             while (!isFinished)
             {
@@ -86,7 +86,7 @@
                     Console.Write($" {printItems[i]["name"]} " +
                         $"| {(printItems[i]["type"] == "DefensePower" ? "방어력" : "공격력")} + {printItems[i]["power"]} " +
                         $"| {printItems[i]["descript"]} " +
-                        $"| {( inventory.InventoryItems.Contains(printItems[i])  ? "구매완료" : printItems[i]["gold"] + "G")}");
+                        $"| {(item.IsSameItem(printItems[i], inventory) ? "구매완료" : printItems[i]["gold"] + "G")}");
 
                     Console.WriteLine();
                 }
