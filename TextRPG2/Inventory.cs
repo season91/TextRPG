@@ -36,7 +36,7 @@ namespace TextRPG2
                         $"| {(printItems[i]["gold"] + "G")}");
                     Console.WriteLine();
                 }
-
+                Console.WriteLine();
                 Console.WriteLine("1. 장착 관리");
                 Console.WriteLine("0. 나가기");
                 Console.WriteLine();
@@ -84,7 +84,7 @@ namespace TextRPG2
                         $"| {inventoryItems[i]["descript"]} ");
                     Console.WriteLine();
                 }
-
+                Console.WriteLine();
                 Console.WriteLine("0. 나가기");
                 Console.WriteLine();
                 Console.WriteLine("원하시는 행동을 입력해주세요.");

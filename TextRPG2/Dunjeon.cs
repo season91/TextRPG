@@ -13,19 +13,6 @@ namespace TextRPG2
             this.donjeonDefense = 0;
             this.defaultGold = 0;
         }
-        // 3가지 난이도 
-        // 난이도는 방어력으로 판단 
-        // easy 방어력 5이상 - 보상 1천골드 + 추가보상 (공격력10이면 10~20퍼 추가보상 / 공격력 15면 15~30퍼 추가보상. 공격력~공격력*2 범위내
-        // normal 방어력 11이상 - 보상 1700골드
-        // hard 방어력 17 이상 - 2500 골드
-
-        // 권장방어력보다 낮다면 40% 확률로 실패 - 보상없고 체력 반 감소
-
-        // 권장방어력보다 놎다면 클리어 - 권장방어력에 따라 종료시 체력 감소
-        // 기본 체력 감소량 20~35 랜덤 
-        // 공식 : 내 방어력 - 권장 방어력 = 숫자 만큼 증갑폭 랜덤값에 설정
-        // 차이가 양수 2라면 (내 방어력이 더 높을 때) 기본 체력 감소량 20(-2) ~ 35(-2) 사이 랜덤 값
-        // 차이가 음수 -6이라면 (내 방어력이 낮을 때) 기본 체력 감소량 20(+6) ~ 35(+6) 사이 랜덤 값
 
         public void DunjeonMenu(Player player)
         {
@@ -160,7 +147,7 @@ namespace TextRPG2
         public void LevelUpValidation(Player player)
         {
             player.ClearCount += 1;
-
+            
             if (player.Level == 1 && player.ClearCount == 1)
             {
                 player.Level += 1;
