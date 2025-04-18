@@ -37,7 +37,7 @@ namespace TextRPG2
             this.Attack = 10.0;
             this.Defense = 5;
             this.Health = 70;
-            this.Gold = 100000;
+            this.Gold = 1000;
             this.AttackBonus = 0;
             this.DefenseBonus = 0;
             this.ClearCount = 0;
